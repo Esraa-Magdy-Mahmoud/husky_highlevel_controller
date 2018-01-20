@@ -30,6 +30,7 @@ namespace husky_highlevel_controller
     }
     void HuskyHighlevelController::scanCallback(const sensor_msgs::LaserScan &msg)
     {
+        
 
     }
 
