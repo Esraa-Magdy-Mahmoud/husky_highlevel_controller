@@ -40,7 +40,7 @@ namespace husky_highlevel_controller
                 smallest_distance = scan_msg.ranges[i];
             }
         }
-        ROS_INFO("the smallest distance measurement from the laser scanner (m): "<<smallest_distance);
+        ROS_INFO_STREAM("the smallest distance measurement from the laser scanner (m): "<<smallest_distance<<'\n');
 
 
     }
