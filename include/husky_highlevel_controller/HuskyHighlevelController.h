@@ -18,7 +18,7 @@ namespace husky_highlevel_controller
 			// Read ros param, return true if successful
 			bool readParameters();
 			// Callback function
-			void scanCallback(const sensor_msgs::LaserScan &msg);
+			void scanCallback(const sensor_msgs::LaserScan &scan_msg);
 
 			ros::NodeHandle& nodeHandle_;
 			ros::Subscriber  scan_sub_;
