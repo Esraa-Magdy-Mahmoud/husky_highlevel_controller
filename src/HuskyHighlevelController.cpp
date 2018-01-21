@@ -4,6 +4,7 @@
 
 namespace husky_highlevel_controller
 {
+    //Constructor
    HuskyHighlevelController::HuskyHighlevelController(ros::NodeHandle& nodeHandle) :
     nodeHandle_(nodeHandle)
     {
@@ -12,7 +13,14 @@ namespace husky_highlevel_controller
             ROS_ERROR("Could not read parameters.");
             ros::requestShutdown();
         }
+
+        // subscribers
         scan_sub_ = nodeHandle_.subscribe(subscriberTopic_, queue_size , &HuskyHighlevelController::scanCallback, this);
+        // publishers
+        cmd_pub_  = nodeHandle_.advertise<geometry_msgs::Twist>("/cmd_vel",100);
+        
+
+
         ROS_INFO("Successfully launched node.");
     }
 

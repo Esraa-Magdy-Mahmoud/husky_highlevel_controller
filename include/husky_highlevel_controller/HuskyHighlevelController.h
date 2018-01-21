@@ -20,8 +20,16 @@ namespace husky_highlevel_controller
 			// Callback function
 			void scanCallback(const sensor_msgs::LaserScan &scan_msg);
 
+			// node habdle
 			ros::NodeHandle& nodeHandle_;
+			// subscriber to /scan topic
 			ros::Subscriber  scan_sub_;
+			//publisher to /cmd_vel
+			ros::Publisher   cmd_pub_;
+			
+			//twist msg
+			geometry_msgs::Twist vel_msg;
+
 			std::string subscriberTopic_;
 			int queue_size;
 			 
