@@ -18,6 +18,7 @@ namespace husky_highlevel_controller
         scan_sub_ = nodeHandle_.subscribe(subscriberTopic_, queue_size , &HuskyHighlevelController::scanCallback, this);
         // publishers
         cmd_pub_  = nodeHandle_.advertise<geometry_msgs::Twist>("/cmd_vel",100);
+        vis_pub_  = nodeHandle_.advertise<visualization_msgs::Marker>("/visualization_marker",10);
         
 
 
@@ -38,7 +39,7 @@ namespace husky_highlevel_controller
     }
     void HuskyHighlevelController::scanCallback(const sensor_msgs::LaserScan &scan_msg)
     {
-        float smallest_distance = 9999;
+        float smallest_distance = 99;
         // the angle corresponding to the minimum distance
       
 
@@ -57,13 +58,14 @@ namespace husky_highlevel_controller
         x_pillar = smallest_distance*cos(alpha_pillar);
         y_pillar =  smallest_distance*sin(alpha_pillar);
 
-        //ROS_INFO_STREAM("the smallest distance measurement from the laser scanner (m): "<<smallest_distance<<'\n');
                 
         //P-Controller to drive husky towards the pillar
         HuskyHighlevelController::pController();
+        HuskyHighlevelController::visMsg();
         cmd_pub_.publish(vel_msg_);
+        vis_pub_.publish( marker );
     }
-    
+
     void HuskyHighlevelController::pController()
     {
         //propotinal gain
@@ -83,6 +85,24 @@ namespace husky_highlevel_controller
              vel_msg_.angular.z = -alpha_pillar ;
 
         }
+    }
+    void HuskyHighlevelController::visMsg()
+    {
+        marker.header.frame_id = "base_link";
+        marker.header.stamp = ros::Time();
+        marker.ns = "pillar";
+        marker.id = 0;
+        marker.type = visualization_msgs::Marker::SPHERE;
+        marker.action = visualization_msgs::Marker::ADD;
+        marker.pose.position.x = x_pillar;
+        marker.pose.position.y = y_pillar; 
+        marker.scale.x = 1;
+        marker.scale.y = 0.1;
+        marker.scale.z = 0.1;
+        marker.color.a = 1.0; // Don't forget to set the alpha!
+        marker.color.r = 0.0;
+        marker.color.g = 1.0;
+        marker.color.b = 0.0;
     }
 
 }
