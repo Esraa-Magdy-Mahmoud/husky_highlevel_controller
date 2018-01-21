@@ -8,7 +8,7 @@
         <arg name="world_name" value="$(find husky_highlevel_controller)/worlds/mysinglePillar.world"/>
         <arg name="laser_enabled" value="$(arg laser_enabled)"/>
   </include>
-  <node pkg="husky_highlevel_controller" type="husky_highlevel_controller" name="husky_highlevel_controller" output="screen" launch-prefix="gnome-terminal --command">
+  <node pkg="husky_highlevel_controller" type="husky_highlevel_controller" name="husky_highlevel_controller" output="screen">
     <rosparam command="load" file="$(find husky_highlevel_controller)/config/config.yaml" />
   </node>
 
