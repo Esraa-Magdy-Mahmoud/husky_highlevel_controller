@@ -36,7 +36,7 @@ namespace husky_highlevel_controller
 			//pillar position
 			float x_pillar;
 			float y_pillar;
-			// the angle of the pillar with respect to the x_axis
+			// the orientation of the pillar with respect to the x_axis
 			float alpha_pillar;
 
  
