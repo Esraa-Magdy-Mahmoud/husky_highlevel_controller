@@ -81,7 +81,7 @@
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
     <model name='unit_cylinder_0'>
-      <pose frame=''>-3.59563 0.701083 0.5 0 -0 0</pose>
+      <pose frame=''>10.6733 4.4054 0.5 0 -0 0</pose>
       <link name='link'>
         <inertial>
           <mass>1</mass>
@@ -97,7 +97,7 @@
         <collision name='collision'>
           <geometry>
             <cylinder>
-              <radius>0.500001</radius>
+              <radius>0.5</radius>
               <length>1</length>
             </cylinder>
           </geometry>
@@ -118,7 +118,7 @@
         <visual name='visual'>
           <geometry>
             <cylinder>
-              <radius>0.500001</radius>
+              <radius>0.5</radius>
               <length>1</length>
             </cylinder>
           </geometry>
@@ -135,10 +135,10 @@
       </link>
     </model>
     <state world_name='default'>
-      <sim_time>48 980000000</sim_time>
-      <real_time>49 149672176</real_time>
-      <wall_time>1516474211 23529080</wall_time>
-      <iterations>48980</iterations>
+      <sim_time>93 924000000</sim_time>
+      <real_time>94 339630844</real_time>
+      <wall_time>1516521650 9230776</wall_time>
+      <iterations>93924</iterations>
       <model name='ground_plane'>
         <pose frame=''>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -150,10 +150,10 @@
         </link>
       </model>
       <model name='unit_cylinder_0'>
-        <pose frame=''>-3.59565 0.701089 1.25773 0 0 -1.4e-05</pose>
-        <scale>0.673663 0.673663 2.51547</scale>
+        <pose frame=''>14.8494 4.70785 1.95383 0 -0 0.001573</pose>
+        <scale>1.18009 1.18009 3.90766</scale>
         <link name='link'>
-          <pose frame=''>-3.59565 0.701089 1.25773 0 0 -1.4e-05</pose>
+          <pose frame=''>14.8494 4.70785 1.95383 0 -0 0.001573</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 -9.8 0 -0 0</acceleration>
           <wrench>0 0 -9.8 0 -0 0</wrench>
@@ -165,7 +165,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose frame=''>5 -5 2 0 0.275643 2.35619</pose>
+        <pose frame=''>24.5611 -16.9547 6.65756 0 0.275643 2.35619</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
