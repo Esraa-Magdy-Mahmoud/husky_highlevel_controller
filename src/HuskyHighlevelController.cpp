@@ -58,16 +58,12 @@ namespace husky_highlevel_controller
         y_pillar =  smallest_distance*sin(alpha_pillar);
 
         //ROS_INFO_STREAM("the smallest distance measurement from the laser scanner (m): "<<smallest_distance<<'\n');
-        //ROS_INFO_STREAM("pillar alpha (m): "<<alpha_pillar<<'\n');
-        
+                
         //P-Controller to drive husky towards the pillar
         HuskyHighlevelController::pController();
         cmd_pub_.publish(vel_msg_);
-        //ROS_INFO_STREAM("vel msg (m): "<<vel_msg_.linear.x <<"angulr zft "<< vel_msg_.angular.z<<'\n');
-
-
-
     }
+    
     void HuskyHighlevelController::pController()
     {
         //propotinal gain
@@ -87,9 +83,6 @@ namespace husky_highlevel_controller
              vel_msg_.angular.z = -alpha_pillar ;
 
         }
-        
-       
-       
     }
 
 }
