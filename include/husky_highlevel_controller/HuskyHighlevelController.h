@@ -6,6 +6,7 @@
 #include <string.h>
 #include <geometry_msgs/Twist.h>
 #include <visualization_msgs/Marker.h>
+#include <std_srvs/SetBool.h>
 namespace husky_highlevel_controller
 {
 	class HuskyHighlevelController
@@ -18,8 +19,10 @@ namespace husky_highlevel_controller
 		private:
 			// Read ros param, return true if successful
 			bool readParameters();
-			// Callback method
+			// Callback methods
 			void scanCallback(const sensor_msgs::LaserScan &scan_msg);
+
+			bool srvCallback(std_srvs::SetBool::Request &request, std_srvs::SetBool::Response &response);
 
 			//P-controller method
 			void pController();
@@ -38,6 +41,9 @@ namespace husky_highlevel_controller
 			ros::Publisher  cmd_pub_;
 			// publisher to /visualization_marker
 			ros::Publisher  vis_pub_;
+
+			//---Service server--//
+			ros::ServiceServer serviceServer_;
 			
 			//------msgs-------//
 			//twist msg
@@ -50,6 +56,8 @@ namespace husky_highlevel_controller
 			float y_pillar;
 			// the orientation of the pillar with respect to the x_axis
 			float alpha_pillar;
+
+			bool start_stop = true ; // true moves , false stop
 
  
 

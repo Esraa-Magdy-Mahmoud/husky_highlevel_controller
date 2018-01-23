@@ -19,6 +19,8 @@ namespace husky_highlevel_controller
         // publishers
         cmd_pub_  = nodeHandle_.advertise<geometry_msgs::Twist>("/cmd_vel",100);
         vis_pub_  = nodeHandle_.advertise<visualization_msgs::Marker>("/visualization_marker",10);
+        // service server
+        serviceServer_ = nodeHandle_.advertiseService("start_stop_husky", &HuskyHighlevelController::srvCallback, this);
         
 
 
@@ -71,20 +73,32 @@ namespace husky_highlevel_controller
         //propotinal gain
         float p_gain_vel = 0.2;
         float p_gain_ang = 10;
-        if (x_pillar <= 0.5 )
+        if(start_stop)
         {
-             vel_msg_.linear.x = 0;
-             vel_msg_.linear.y = 0; 
-             vel_msg_.angular.z =0;
+            if (x_pillar <= 0.5 )
+             {
+                 vel_msg_.linear.x = 0;
+                 vel_msg_.linear.y = 0; 
+                 vel_msg_.angular.z =0;
 
-        }
-        else 
-        {
-             vel_msg_.linear.x = x_pillar * p_gain_vel  ;
-             vel_msg_.linear.y = y_pillar * p_gain_vel ; 
-             vel_msg_.angular.z = -alpha_pillar ;
+             }
+            else 
+              {
+                 vel_msg_.linear.x = x_pillar * p_gain_vel  ;
+                 vel_msg_.linear.y = y_pillar * p_gain_vel ; 
+                 vel_msg_.angular.z = -alpha_pillar ;
 
-        }
+              }
+ 
+       }
+       else
+       {
+                 vel_msg_.linear.x = 0;
+                 vel_msg_.linear.y = 0; 
+                 vel_msg_.angular.z =0;
+       }
+
+        
     }
     void HuskyHighlevelController::visMsg()
     {
@@ -103,6 +117,22 @@ namespace husky_highlevel_controller
         marker.color.r = 0.0;
         marker.color.g = 1.0;
         marker.color.b = 0.0;
+    }
+    bool HuskyHighlevelController::srvCallback(std_srvs::SetBool::Request &request, std_srvs::SetBool::Response &response)
+    {
+        
+        if (request.data)
+        {
+            start_stop = true;
+        }
+        else
+        {
+            start_stop = false;
+        }
+        response.success = true;
+        return true;
+
+
     }
 
 }
