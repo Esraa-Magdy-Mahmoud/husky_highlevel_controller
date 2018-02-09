@@ -25,19 +25,20 @@ My solutions to the exercises presented in the [Programming for Robotics - ROS ]
     $ rosdep install --from-path src --ignore-src  
     $ source devel/setup.bash
   ```
-    Set the environment variable HUSKY_GAZEBO_DESCRIPTION
-    ```
-    $ export HUSKY_URDF_EXTRAS=$(rospack find husky_description)/urdf/empty.urdf
-    ```
-    To launch the simulator :
-   ```
-    $ roslaunch husky_gazebo husky_empty_world.launch
-   ```
-   or
-   ```
-    $ roslaunch husky_gazebo husky_playpen.launch 
   ```
+     Set the environment variable HUSKY_GAZEBO_DESCRIPTION
+     $ export HUSKY_URDF_EXTRAS=$(rospack find husky_description)/urdf/empty.urdf
+  ```
+      To launch the simulator :
+   ```
+      $ roslaunch husky_gazebo husky_empty_world.launch
+   ```
+      or
+   ```
+      $ roslaunch husky_gazebo husky_playpen.launch 
+   ```
   ### Experiment with husky_highlevel_controller:
+  ```
     $ roslaunch husky_highlevel_controller husky_highlevel_controller.launch
-  
+  ```
   
